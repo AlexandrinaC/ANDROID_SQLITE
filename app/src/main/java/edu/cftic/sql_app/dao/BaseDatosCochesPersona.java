@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import android.util.Log;
 
 
 import java.util.ArrayList;
@@ -52,12 +52,26 @@ public class BaseDatosCochesPersona extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void insertarPersona (Persona persona)
-    {
+    public void insertarPersona (Persona persona) {
+        try {
 
-        SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL("INSERT INTO PERSONA (id, nombre) VALUES ("+ persona.getId()+" , '"+ persona.getNombre()+"')");
-        this.cerrarBaseDatos(database);
+            SQLiteDatabase database = this.getWritableDatabase();
+            database.execSQL("INSERT INTO PERSONA (id, nombre) VALUES (" + persona.getId() + " , '" + persona.getNombre() + "')");
+            this.cerrarBaseDatos(database);
+        }
+        catch (NullPointerException n)
+        {
+            Log.e("MIAPP", "Null ha petado insertando una persona" , n);
+        }
+        catch (Exception e)
+        {
+            Log.e("MIAPP", "Ha petao ensertando una persona" + persona.toString(), e);
+        }
+
+       /* finally
+        {
+            this.cerrarBaseDatos(database);
+        }*/
 
     }
 

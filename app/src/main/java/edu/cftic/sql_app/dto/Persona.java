@@ -11,6 +11,14 @@ public class Persona implements Parcelable {
     private int id;
     private String nombre;
 
+    @Override
+    public String toString() {
+        String objeto_str = null;
+        objeto_str = "Nombre = " + this.getNombre() + " " + "ID" + this.getId();
+
+        return objeto_str;
+    }
+
 
     public static final Parcelable.Creator<Persona> CREATOR = new Parcelable.Creator<Persona>(){
 

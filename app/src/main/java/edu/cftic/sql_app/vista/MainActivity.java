@@ -34,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
         boolean existe_bd = dbpath.exists();
         Button boton_mostrar = findViewById(R.id.butonmostrar);
         boton_mostrar.setEnabled(dbpath.exists());
+        Button boton_cargar = findViewById(R.id.btncargar);
+        boton_cargar.setEnabled(!existe_bd);
     }
 
     public void cargarDatos(View view) {
+
+
 
         //creo el objeto de la base de datos
         this.baseDatosCochesPersona = new BaseDatosCochesPersona(this, "MiDB", null, 1);
@@ -62,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         //TODO cojer el botón de mostrar y habilitarlo
         Button boton_mostrar = findViewById(R.id.butonmostrar);
         boton_mostrar.setEnabled(true);
+
+        /*//TODO Coger boton cargar y lo deshabilito.
+        //Para que una vez cargados los datos, no pueda volver a darle al boton cargar y asi no pete.
+        Button boton_cargar = findViewById(R.id.btncargar);
+        boton_cargar.setEnabled(false);*/
 
 
     }
